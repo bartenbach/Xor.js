@@ -1,0 +1,16 @@
+{
+  "name": "Repeaxor",
+  "version": "1.0.0",
+  "description": "Encrypts things with repeating key XOR",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Blake Bartenbach",
+  "license": "MIT",
+  "dependencies": {
+    "argparse": "^1.0.10",
+    "chalk": "^2.4.2",
+    "jest": "^24.5.0"
+  }
+}
