@@ -1,30 +1,31 @@
-module.exports = {
-  // creates a repeating key xor array of bytes using the specified size
-  createRepeatingKeyXorKey : function(key, size) {
-    var repeatingKey = new Uint8Array(size);
-    var j = 0;
-    for (var i = 0; i < repeatingKey.length; i++) {
-      repeatingKey[i] = key[j].charCodeAt(0);
-      if (j == key.length - 1) {
-        j = 0;
-      } else {
-        j++;
-      }
-    }
-    return repeatingKey;
-  },
-  
-  // performs an XOR on two byte arrays and returns the result.
-  // throws an error if the sizes are different. 
-  xorByteArrays : function(data, key) {
-    if (data.length != key.length) {
-      throw new Error("Cannot XOR arrays: mismatched lengths: data:"
-          + data.length + " and key:" + key.length);
-    }
-    var result = new Uint8Array(data.length);
-    for (var i = 0; i < data.length; i++) {
-      result[i] = data[i] ^ key[i]    
-    }
-    return result; 
+#!/usr/bin/env node
+
+'use strict';
+
+// parse the command line arguments
+var ArgumentParser = require('argparse').ArgumentParser;
+var file = require('./file.js');
+var xor = require('./byteutil.js');
+
+var parser = new ArgumentParser({
+  version: '0.0.1',
+  addHelp:true,
+  description: 'Repeating key XOR encrpytion at the console'
+});
+parser.addArgument(
+  [ '-f', '--file' ],
+  {
+    required: true,
+    help: 'the file to encrypt'
   }
-};
+);
+parser.addArgument(
+  [ '-k', '--key' ],
+  {
+    required: true,
+    help: 'the repeating key to encrypt the file under'
+  }
+);
+var args = parser.parseArgs();
+
+file.readBytesFromFile(args.file, args.key);

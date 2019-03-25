@@ -11,6 +11,7 @@
   "dependencies": {
     "argparse": "^1.0.10",
     "chalk": "^2.4.2",
-    "jest": "^24.5.0"
+    "jest": "^24.5.0",
+    "text-encoding": "^0.7.0"
   }
 }

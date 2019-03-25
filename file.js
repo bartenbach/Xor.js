@@ -1,5 +1,6 @@
 const fs = require('fs')
-const xor = require('./xor')
+const xor = require('./byteutil')
+const textEncoding = require('text-encoding');
 
 // read the specified file and return the text as an array of bytes
 module.exports = {
@@ -8,7 +9,8 @@ module.exports = {
       if (err) throw err;
       keyArray = xor.createRepeatingKeyXorKey(keyInput, data.length);
       result = xor.xorByteArrays(data, keyArray);
-      console.log(result);
+      var string = new TextDecoder("utf-8").decode(result);
+      console.log(string);
     })
   }
 }
