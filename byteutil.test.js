@@ -1,4 +1,4 @@
-var xor = require("./xor");
+var xor = require("./byteutil");
 
 test('Creates a repeating key XOR byte array with ICE of length 4', () => {
   var expected = new Uint8Array(['I'.charCodeAt(0), 'C'.charCodeAt(0)
